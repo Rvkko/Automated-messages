@@ -46,6 +46,14 @@ templates = [
     "Forever my {adjective} in this {environment_nouns}."
 ]
 
+gif_urls = [
+    "http://localhost:8000/icegif-979.gif",
+    "http://localhost:8000/sleep-icegif-12.gif",
+    "http://localhost:8000/giphy.gif",
+    "http://localhost:8000/hugs-icegif-3.gif",
+    "http://localhost:8000/hug-love.gif"
+]
+
 def generate_message():
     template = random.choice(templates)
     message = template.format(
@@ -70,6 +78,7 @@ def send_email(email_count):
     𝓡 𝓲 𝓴 𝓴 𝓸
     """
     text = body + signature
+    gif_url = random.choice(gif_urls)
     html = f"""
     <html>
     <body>
@@ -78,6 +87,7 @@ def send_email(email_count):
         <p>Check out my -> <a href="https://github.com/Rvkko">GitHub</a></p>
         <p>Check out my -> <a href="https://www.linkedin.com/in/derriko-herron-jr-bs/">LinkedIn</a></p>
         <p><a href="http://example.com/unsubscribe">Unsubscribe :(</a></p>
+        <p><img src="{gif_url}" alt="Love GIF"></p>
     </body>
     </html>
     """
@@ -96,20 +106,20 @@ def send_email(email_count):
             print(f"Email {email_count} sent successfully.")
     except Exception as e:
         print(f"Failed to send email: {e}")
-    
+
 # Schedule the email to be sent at 11:10 PM
-#job = schedule.every().day.at("23:17").do(send_email, email_count)
+# job = schedule.every().day.at("23:10").do(send_email, email_count)
 
 def cancel_scheduled_email():
-    #schedule.cancel_job(job)
+    # schedule.cancel_job(job)
     print("Scheduled email has been canceled.")
 
 # Keep the script running
-#try:
-#    while True:
-#        schedule.run_pending()
-#        time.sleep(1)
-#except KeyboardInterrupt:
-#    cancel_scheduled_email()
+# try:
+#     while True:
+#         schedule.run_pending()
+#         time.sleep(1)
+# except KeyboardInterrupt:
+#     cancel_scheduled_email()
 
 send_email(email_count)
