@@ -1,9 +1,7 @@
-```markdown
-# ✉️ Automated Email System - Motivational and Love Letters
+✉️ Automated Email System - Motivational and Love Letters
 
 This repository showcases Python scripts for automating the creation and delivery of motivational quotes and love letters. Each script features random message generation, SMTP integration for email delivery, and a testing module for message validation.
 
----
 
 ## 📁 Files Overview
 
