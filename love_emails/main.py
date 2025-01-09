@@ -4,13 +4,14 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import random
 import schedule
+from datetime import datetime, timedelta
 
 smtp_server = "smtp.gmail.com"
 smtp_port = 587
 sender = "mercedesmotivational9@gmail.com"
 pw = "ylkc xrlz xcwx efwf"
-recipient = "youngdirk2005@gmail.com"
-subject_base = "Love Letter #"
+recipient = "alicat375@gmail.com"
+subject_base = "Happy Aniversary AR4L :) "
 email_count = 1
 
 nouns = [
@@ -107,19 +108,26 @@ def send_email(email_count):
     except Exception as e:
         print(f"Failed to send email: {e}")
 
-# Schedule the email to be sent at 11:10 PM
-# job = schedule.every().day.at("23:10").do(send_email, email_count)
+def schedule_email():
+    target_time = datetime(2024, 11, 23, 0, 0)  # 12:00 AM EST on 11/23/2024
+    current_time = datetime.now()
+    delay = (target_time - current_time).total_seconds()
+    if delay > 0:
+        print(f"Scheduling email to be sent in {delay} seconds.")
+        schedule.every(delay).seconds.do(send_email, email_count)
+    else:
+        print("The target time has already passed.")
 
 def cancel_scheduled_email():
-    # schedule.cancel_job(job)
+    schedule.clear()
     print("Scheduled email has been canceled.")
 
-# Keep the script running
-# try:
-#     while True:
-#         schedule.run_pending()
-#         time.sleep(1)
-# except KeyboardInterrupt:
-#     cancel_scheduled_email()
+schedule_email()
 
-send_email(email_count)
+# Keep the script running
+try:
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+except KeyboardInterrupt:
+    cancel_scheduled_email()

@@ -3,7 +3,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import random
-#import schedule
+from datetime import datetime, timedelta
 
 smtp_server = "smtp.gmail.com"
 smtp_port = 587
@@ -108,20 +108,3 @@ def send_email(email_count):
             print(f"Email {email_count} sent successfully.")
     except Exception as e:
         print(f"Failed to send email: {e}")
-
-# Schedule the email to be sent at 11:10 PM
-# job = schedule.every().day.at("23:10").do(send_email, email_count)
-
-def cancel_scheduled_email():
-    # schedule.cancel_job(job)
-    print("Scheduled email has been canceled.")
-
-# Keep the script running
-# try:
-#     while True:
-#         schedule.run_pending()
-#         time.sleep(1)
-# except KeyboardInterrupt:
-#     cancel_scheduled_email()
-
-send_email(email_count)
